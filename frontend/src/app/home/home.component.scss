@@ -22,3 +22,16 @@
     margin: 0 10px;
   }
 }
+
+@media(max-width: 767px) {
+  .mat-column-index,
+  .mat-column-code{
+    display: none;
+  }
+}
+
+@media(min-width: 768px) and (max-width: 969px) {
+  .mat-column-index{
+    display: none;
+  }
+}
