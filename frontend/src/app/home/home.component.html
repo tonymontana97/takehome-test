@@ -1,16 +1,15 @@
 <div class="container">
   <mat-card>
     <mat-card-content>
+
       <div class="toggles">
-        <mat-checkbox
-          (change)="filter('isSupportedInUS')"
-          [(ngModel)]="filters.isSupportedInUS">Enable in US?</mat-checkbox>
-        <mat-checkbox
-          (change)="filter('supportsTestMode')"
-          [(ngModel)]="filters.supportsTestMode">Enable test mode?</mat-checkbox>
-        <mat-checkbox
-          (change)="filter('random')"
-          [(ngModel)]="filters.random">Random</mat-checkbox>
+        <button mat-raised-button color="primary" (click)="randSorting()">Shuffle</button>
+        <mat-slide-toggle
+          (change)="filter()"
+          [(ngModel)]="filters.isSupportedInUS">Enable in US?</mat-slide-toggle>
+        <mat-slide-toggle
+          (change)="filter()"
+          [(ngModel)]="filters.supportsTestMode">Enable test mode?</mat-slide-toggle>
       </div>
       <table mat-table [dataSource]="currencies" matSort>
         <!-- Index Column -->

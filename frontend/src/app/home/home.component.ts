@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CurrenciesService } from '@app/home/currencies.service';
 import { finalize } from 'rxjs/operators';
 import { Currency } from '@app/types/models';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatSortable, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +17,7 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[];
   filters = {
     isSupportedInUS: false,
-    supportsTestMode: false,
-    random: true
+    supportsTestMode: false
   };
 
   constructor(private currenciesService: CurrenciesService) {
@@ -34,24 +33,26 @@ export class HomeComponent implements OnInit {
         this.currencies = new MatTableDataSource<Currency>(res);
         this.currencies.sort = this.sort;
         this.currencies.filterPredicate = (currency, filter): boolean => {
-          if (filter !== 'random') {
-            const spitedFilter = filter.split('|');
-            return currency[spitedFilter[0]] === Boolean(spitedFilter[1]);
+          const filtersCurrent = JSON.parse(filter);
+          if (filtersCurrent.isSupportedInUS) {
+            return currency.isSupportedInUS === filtersCurrent.isSupportedInUS;
           }
+          if (filtersCurrent.supportsTestMode) {
+            return currency.supportsTestMode === filtersCurrent.supportsTestMode;
+          }
+
           return true;
         };
       });
   }
 
-  filter(filterKey: string): void {
-    console.log(this.filters);
-    if (filterKey !== 'random') {
-      this.currencies.filter = `${filterKey}|${this.filters[filterKey]}`;
-      this.filters.random = false;
-    } else {
-      this.currencies.filter = `random`;
-      this.filters.supportsTestMode = false;
-      this.filters.supportsTestMode = false;
-    }
+  filter(): void {
+    this.currencies.filter = JSON.stringify(this.filters);
+  }
+
+  randSorting(): void {
+    const sortFields = ['id', 'name', 'code', 'createdAt', 'addressRegex'];
+    this.sort.sort(({ id: sortFields[Math.floor(Math.random() * sortFields.length)], start: 'asc'}) as MatSortable);
+    this.currencies.sort = this.sort;
   }
 }

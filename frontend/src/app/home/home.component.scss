@@ -18,7 +18,7 @@
 
 .toggles {
   text-align: right;
-  .mat-checkbox {
+  & > * {
     margin: 0 10px;
   }
 }
