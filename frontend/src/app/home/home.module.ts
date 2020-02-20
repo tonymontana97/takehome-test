@@ -8,7 +8,7 @@ import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { QuoteService } from './quote.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -18,7 +18,8 @@ import { QuoteService } from './quote.service';
     SharedModule,
     FlexLayoutModule,
     MaterialModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    FormsModule
   ],
   declarations: [HomeComponent]
 })

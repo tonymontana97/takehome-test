@@ -3,12 +3,22 @@
   padding: 1em;
 }
 
-.logo {
-  width: 150px;
-  margin: 0 auto;
+.mat-table {
+  width: 100%;
+  text-align: left;
 }
 
-q {
-  font-style: italic;
-  quotes: "« " " »";
+.mat-column-index {
+  width: 80px;
+}
+
+.mat-column-name {
+  width: 300px;
+}
+
+.toggles {
+  text-align: right;
+  .mat-checkbox {
+    margin: 0 10px;
+  }
 }
