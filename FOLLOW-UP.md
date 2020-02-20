@@ -1,9 +1,11 @@
 # Implementation:
 
 ### Q) What libraries did you add to the frontend? What are they used for?
-
+Angular, Angular Material (for displaying tables with sorting and filtering)
 ### Q) What's the command to start the frontend application locally?
-
+ ```sh
+ npm run start
+ ```
 ### Q) What libraries did you add to the backend? What are they used for?
 
 ### Q) What's the command to start the backend application locally?
